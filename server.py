@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from flask import request, redirect
 import csv
 import pyodbc
+import psycopg2
+
 app = Flask(__name__)
 
 
@@ -59,6 +61,37 @@ def insert_data(data):
 
 
 
+def insert_data_2(data):
+    email = data['email']
+    subject = data['subject']
+    message = data['message']
+    try:
+        connection = psycopg2.connect(user="postgres",
+                                      password="password",
+                                      host="127.0.0.1",
+                                      port="5432",
+                                      database="PORTFOLIO")
+        cursor = connection.cursor()
+        cursor.execute("SELECT version();")
+        record = cursor.fetchone()
+        print("\nYou are connected to - ", record, "\n")
+        # Execute the sql query
+        cursor.execute('Select * from project')
+
+        # Print the data
+        for row in cursor:
+            print(row)
+        cursor.execute( "INSERT INTO project(email,subj,msg) VALUES(%s,%s,%s)",(email,subject,message))
+        connection.commit()
+    except:
+        print('Something wrong, please check2')
+
+    finally:
+        connection.close()
+
+
+
+
 
 
 @app.route('/submit_form', methods=['POST', 'GET'])
@@ -68,7 +101,8 @@ def submit_form():
         write_to_file(data)
         write_to_csv(data)
         insert_data(data)
-        print(data)
+        insert_data_2(data)
+        #print(data)
         return redirect('/thankyou.html')
     else:
         return 'something went wrong'
