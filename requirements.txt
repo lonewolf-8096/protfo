@@ -71,7 +71,6 @@ pydotplus==2.0.2
 Pygments==2.6.1
 PyJWT==1.7.1
 pylint==2.5.0
-pyodbc==4.0.30
 pyparsing==2.4.7
 PyPDF2==1.26.0
 pyrsistent==0.16.0
