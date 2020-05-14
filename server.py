@@ -41,7 +41,7 @@ def write_to_csv(data):
 
 def insert_data(data):
     connection = pyodbc.connect('Driver={SQL Server};'
-                      'Server=127.0.0.1.saikrishna8096.pythonanywhere.com;'
+                      'Server=LAPTOP-1UMNN0C2\SQLEXPRESS;'
                       'Database=PORTFOLIO;'
                       'Trusted_Connection=yes;')
     try:
@@ -68,7 +68,7 @@ def insert_data_2(data):
     try:
         connection = psycopg2.connect(user="postgres",
                                       password="password",
-                                      host="127.0.0.1.saikrishna8096.pythonanywhere.com",
+                                      host="127.0.0.1",
                                       port="5432",
                                       database="PORTFOLIO")
         cursor = connection.cursor()
