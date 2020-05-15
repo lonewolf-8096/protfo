@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask import request, redirect
 import csv
-#import pyodbc
+import pyodbc
 import psycopg2
 
 app = Flask(__name__)
@@ -39,24 +39,24 @@ def write_to_csv(data):
 
 
 
-# def insert_data(data):
-#     connection = pyodbc.connect('Driver={SQL Server};'
-#                       'Server=LAPTOP-1UMNN0C2\SQLEXPRESS;'
-#                       'Database=PORTFOLIO;'
-#                       'Trusted_Connection=yes;')
-#     try:
-#             SQLCommand= ("INSERT INTO project" "(email,subj,msg)"
-#                       "VALUES (?,?,?)")
-#             Values=[data['email'],data['subject'],data['message']]
-#             cursor = connection.cursor()
-#             cursor.execute(SQLCommand, Values)
-#             connection.commit()
-#     except:
-#             print('Something wrong, please check')
-#
-#     finally:
-#             # Close the connection
-#             connection.close()
+def insert_data(data):
+    connection = pyodbc.connect('Driver={SQL Server};'
+                      'Server=LAPTOP-1UMNN0C2\SQLEXPRESS;'
+                      'Database=PORTFOLIO;'
+                      'Trusted_Connection=yes;')
+    try:
+            SQLCommand= ("INSERT INTO project" "(email,subj,msg)"
+                      "VALUES (?,?,?)")
+            Values=[data['email'],data['subject'],data['message']]
+            cursor = connection.cursor()
+            cursor.execute(SQLCommand, Values)
+            connection.commit()
+    except:
+            print('Something wrong, please check')
+
+    finally:
+            # Close the connection
+            connection.close()
 
 
 
@@ -100,7 +100,7 @@ def submit_form():
         data=request.form.to_dict ()
         write_to_file(data)
         write_to_csv(data)
-        # insert_data(data)
+        insert_data(data)
         insert_data_2(data)
         #print(data)
         return redirect('/thankyou.html')
