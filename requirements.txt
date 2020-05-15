@@ -22,6 +22,7 @@ fanstatic==1.1
 Flask==1.1.2
 folium==0.10.1
 graphviz==0.14
+gunicorn==20.0.4
 h2==3.2.0
 hpack==3.0.0
 hyperframe==5.2.0
@@ -71,7 +72,6 @@ pydotplus==2.0.2
 Pygments==2.6.1
 PyJWT==1.7.1
 pylint==2.5.0
-pyodbc==4.0.30
 pyparsing==2.4.7
 PyPDF2==1.26.0
 pyrsistent==0.16.0
@@ -79,6 +79,7 @@ PySocks==1.7.1
 python-dateutil==2.8.1
 python-git==2018.2.1
 pytz==2019.3
+pywin32==227
 pywinpty==0.5.7
 pyzmq==19.0.0
 requests==2.23.0
