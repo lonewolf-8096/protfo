@@ -16,7 +16,7 @@ db==0.1.1
 db-sqlite3==0.0.1
 decorator==4.4.2
 defusedxml==0.6.0
-Django==3.0.5
+Django==3.1.9
 entrypoints==0.3
 fanstatic==1.1
 Flask==1.1.2
